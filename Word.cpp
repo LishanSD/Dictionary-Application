@@ -27,3 +27,19 @@ string Word::getDefinition()
 {
     return definition;
 }
+
+// Setters
+void Word::setName(string newName)
+{
+    this->name = newName;
+}
+
+void Word::setType(string newType)
+{
+    this->type = newType;
+}
+
+void Word::setDefinition(string newDefinition)
+{
+    this->definition = newDefinition;
+}
