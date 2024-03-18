@@ -44,6 +44,7 @@ void Word::setDefinition(string newDefinition)
     this->definition = newDefinition;
 }
 
+// Method to print the word's name, type and definition
 void Word::printDefinition()
 {
     // Print name
