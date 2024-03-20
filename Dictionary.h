@@ -6,6 +6,7 @@
 #include <vector>
 #include "Word.h"
 
+// "Dictionary" class
 class Dictionary
 {
 private:
