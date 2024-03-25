@@ -63,6 +63,12 @@ int randomNumber(int lower_bound, int upper_bound)
   return randNum;
 }
 
+bool checkWord(const string &word)
+{
+  return all_of(word.begin(), word.end(), [](char c)
+                { return isalpha(c) || c == '-'; });
+}
+
 // Method to execute the menu
 void Dictionary::menu()
 {
@@ -103,25 +109,6 @@ void Dictionary::menu()
       }
     }
     else if (n == "2")
-    { // List down palindromes if '2' is entered
-      findPalindromes();
-    }
-    else if (n == "3")
-    { // Find rhyming words if '3' is entered
-      cout << "Enter a word to find rhyming words: ";
-      getline(cin, word);
-      cout << "\n";
-      findRhymingWords(word); // Find rhyming words to the entered word
-    }
-    else if (n == "4")
-    { // Execute the game "Guess the fourth word" if '4' is entered
-      guessTheWord();
-    }
-    else if (n == "5")
-    { // Add a word to the dictionary if '5' is entered
-      addWord();
-    }
-    else if (n == "6")
     { // Exit the loop if '6' is entered
       break;
     }
