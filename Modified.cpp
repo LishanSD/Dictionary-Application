@@ -123,18 +123,17 @@ bool Dictionary::load(const string &fileName)
   return true;
 }
 
-void Dictionary::search(const string &term) const
+const Word *Dictionary::search(const string &term) const
 {
   const auto &format_term = format_string(term); // Make the input lowercase and replace the spaces in the input with hyphens
 
-  // Searching
-  const auto &found = std::find_if(getWordlist().begin(), getWordlist().end(),
-                                   [&format_term](const Word &wordObj)
-                                   { return wordObj.getName() == format_term; });
+  const auto &found = std::lower_bound(getWordlist().begin(), getWordlist().end(), format_term,
+                                       [](const Word &a, const std::string &b)
+                                       { return a.getName() < b; });
 
-  if (found != getWordlist().end())
+  if (found != getWordlist().end() && found->getName() == format_term)
   {
-    found->printDefinition();
+    return &*found;
   }
   else
   {
