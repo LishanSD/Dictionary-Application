@@ -69,48 +69,57 @@ bool checkWord(const string &word)
                 { return isalpha(c) || c == '-'; });
 }
 
-bool Dictionary::load(string fileName)
+bool Dictionary::load(const string &fileName)
 {
-  // Open the the dictionary file
   ifstream file(fileName);
-
-  // Load the information for each word and add them into the dictionary
-  if (file.is_open())
-  {
-    string type;
-    string definition;
-    string name;
-    string blank_line;
-
-    while (getline(file, type))
-    {
-      type = type.erase(0, 6); // Remove the text "Type: " and load
-
-      getline(file, definition);
-      definition = definition.erase(0, 12); // Remove the text "Definition: " and load
-
-      getline(file, name);
-      name = name.erase(0, 6); // Remove the text "Word: " and load
-
-      getline(file, blank_line);
-
-      // Add the information of word to a Word object
-      Word word(name, type, definition);
-
-      // Add each word into the dictionary
-      setWordlist(word);
-    }
-
-    file.close();
-
-    cout << "Dictionary loaded and parsed successfully..." << "\n";
-    return true;
-  }
-  else
+  if (!file.is_open())
   {
     cout << "Error opening the dictionary file!" << "\n";
     return false;
   }
+
+  string line;
+  while (getline(file, line))
+  {
+    size_t found = line.find("Type: ");
+    if (found != string::npos)
+    {
+      string type = line.substr(found + 6);
+      getline(file, line);
+      found = line.find("Definition: ");
+      if (found != string::npos)
+      {
+        string definition = line.substr(found + 12);
+        getline(file, line);
+        found = line.find("Word: ");
+        if (found != string::npos)
+        {
+          string name = line.substr(found + 6);
+          setWordlist(Word(name, type, definition));
+        }
+        else
+        {
+          cout << "Error: invalid file format" << "\n";
+          return false;
+        }
+      }
+      else
+      {
+        cout << "Error: invalid file format" << "\n";
+        return false;
+      }
+    }
+    else
+    {
+      cout << "Error: invalid file format" << "\n";
+      return false;
+    }
+  }
+
+  file.close();
+
+  cout << "Dictionary loaded and parsed successfully..." << "\n";
+  return true;
 }
 
 // Method to execute the menu
