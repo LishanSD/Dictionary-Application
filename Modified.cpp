@@ -69,6 +69,50 @@ bool checkWord(const string &word)
                 { return isalpha(c) || c == '-'; });
 }
 
+bool Dictionary::load(string fileName)
+{
+  // Open the the dictionary file
+  ifstream file(fileName);
+
+  // Load the information for each word and add them into the dictionary
+  if (file.is_open())
+  {
+    string type;
+    string definition;
+    string name;
+    string blank_line;
+
+    while (getline(file, type))
+    {
+      type = type.erase(0, 6); // Remove the text "Type: " and load
+
+      getline(file, definition);
+      definition = definition.erase(0, 12); // Remove the text "Definition: " and load
+
+      getline(file, name);
+      name = name.erase(0, 6); // Remove the text "Word: " and load
+
+      getline(file, blank_line);
+
+      // Add the information of word to a Word object
+      Word word(name, type, definition);
+
+      // Add each word into the dictionary
+      setWordlist(word);
+    }
+
+    file.close();
+
+    cout << "Dictionary loaded and parsed successfully..." << "\n";
+    return true;
+  }
+  else
+  {
+    cout << "Error opening the dictionary file!" << "\n";
+    return false;
+  }
+}
+
 // Method to execute the menu
 void Dictionary::menu()
 {
