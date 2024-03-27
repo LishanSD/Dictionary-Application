@@ -123,6 +123,25 @@ bool Dictionary::load(const string &fileName)
   return true;
 }
 
+void Dictionary::search(string term)
+{
+  string format_term = format_string(term); // Make the input lowercase and replace the spaces in the input with hyphens
+
+  // Searching
+  for (auto &wordObj : getWordlist())
+  {
+    // Word found
+    if (wordObj.getName() == format_term)
+    {
+      wordObj.printDefinition();
+      return;
+    }
+  }
+
+  // Throw an exception if the word not found
+  throw out_of_range("Word not found!");
+}
+
 // Method to execute the menu
 void Dictionary::menu()
 {
