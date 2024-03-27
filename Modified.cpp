@@ -123,23 +123,23 @@ bool Dictionary::load(const string &fileName)
   return true;
 }
 
-void Dictionary::search(string term)
+void Dictionary::search(const string &term) const
 {
-  string format_term = format_string(term); // Make the input lowercase and replace the spaces in the input with hyphens
+  const auto &format_term = format_string(term); // Make the input lowercase and replace the spaces in the input with hyphens
 
   // Searching
-  for (auto &wordObj : getWordlist())
-  {
-    // Word found
-    if (wordObj.getName() == format_term)
-    {
-      wordObj.printDefinition();
-      return;
-    }
-  }
+  const auto &found = std::find_if(getWordlist().begin(), getWordlist().end(),
+                                   [&format_term](const Word &wordObj)
+                                   { return wordObj.getName() == format_term; });
 
-  // Throw an exception if the word not found
-  throw out_of_range("Word not found!");
+  if (found != getWordlist().end())
+  {
+    found->printDefinition();
+  }
+  else
+  {
+    throw std::out_of_range("Word not found!");
+  }
 }
 
 // Method to execute the menu
