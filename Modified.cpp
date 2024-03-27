@@ -79,22 +79,23 @@ bool Dictionary::load(const string &fileName)
   }
 
   string line;
+  string type, definition, name;
   while (getline(file, line))
   {
     size_t found = line.find("Type: ");
     if (found != string::npos)
     {
-      string type = line.substr(found + 6);
+      type = line.substr(found + 6);
       getline(file, line);
       found = line.find("Definition: ");
       if (found != string::npos)
       {
-        string definition = line.substr(found + 12);
+        definition = line.substr(found + 12);
         getline(file, line);
         found = line.find("Word: ");
         if (found != string::npos)
         {
-          string name = line.substr(found + 6);
+          name = line.substr(found + 6);
           setWordlist(Word(name, type, definition));
         }
         else
