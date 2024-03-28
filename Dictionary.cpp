@@ -18,6 +18,8 @@ string format_string(string word)
     while ((format_word.find(" ", start)) != string::npos)
     {
         size_t x = format_word.find(" ", start);
+        format_word.replace(x, 1, "-");
+        start += x;
     }
 
     return format_word;
