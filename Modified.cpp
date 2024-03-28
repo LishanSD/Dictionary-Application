@@ -158,29 +158,26 @@ void Dictionary::findPalindromes() const
   }
 }
 
-void Dictionary::findRhymingWords(string word)
+void Dictionary::findRhymingWords(string word) const
 {
   int count = 0;
 
   if (word.length() >= 3)
   {
-    string str_1 = word.substr(word.length() - 3); // Separate the last 3 letters of the given word
+    const auto &str_1 = word.substr(word.length() - 3);
     cout << "Rhyming words to \"" << word << "\"," << "\n";
 
-    for (auto &wordObj : getWordlist())
+    const auto &end = getWordlist().end();
+    for (auto it = getWordlist().begin(); it != end; ++it)
     {
-      string curr_word = wordObj.getName();
+      const auto &curr_word = it->getName();
+      const auto &str_2 = curr_word.substr(curr_word.length() - 3);
 
-      if (curr_word.length() >= 3)
+      // Check whether the word rhymes with the given word
+      if (str_1 == str_2)
       {
-        string str_2 = curr_word.substr(curr_word.length() - 3); // Separate the last 3 letters of the current word
-
-        // Check whether the word rhymes with the given word
-        if (str_1 == str_2)
-        {
-          count++;
-          cout << "   " << curr_word << "\n";
-        }
+        count++;
+        cout << "   " << curr_word << "\n";
       }
     }
 
