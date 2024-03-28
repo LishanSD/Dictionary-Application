@@ -146,9 +146,8 @@ void Dictionary::findPalindromes() const
   cout << "Palindromes," << "\n";
 
   const auto &end = getWordlist().end();
-  for (auto it = getWordlist().begin(); it != end; ++it)
+  for (const auto &word : getWordlist())
   {
-    const auto &word = it->getName();
     const auto &reversed_word = std::string(word.rbegin(), word.rend());
 
     // Check whether the word is a palindrome
