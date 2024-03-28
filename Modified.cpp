@@ -164,20 +164,13 @@ void Dictionary::findRhymingWords(string word) const
 
   if (word.length() >= 3)
   {
-    const auto &end = getWordlist().end();
     const auto &str_1 = word.substr(word.length() - 3);
+    const auto &range = std::equal_range(getWordlist().begin(), getWordlist().end(),
+                                         str_1,
+                                         [](const Word &a, const std::string &b)
+                                         { return a.getName().substr(a.getName().length() - 3) < b; });
 
-    auto it = std::lower_bound(getWordlist().begin(), end,
-                               str_1,
-                               [](const Word &a, const std::string &b)
-                               { return a.getName().substr(a.getName().length() - 3) < b; });
-
-    while (it != end && it->getName().substr(it->getName().length() - 3) == str_1)
-    {
-      count++;
-      cout << "   " << it->getName() << "\n";
-      ++it;
-    }
+    count = std::distance(range.first, range.second);
 
     if (count == 0)
     {
@@ -188,6 +181,11 @@ void Dictionary::findRhymingWords(string word) const
     {
       cout << "\n";
       cout << count << " rhyming words found!" << "\n";
+
+      for (auto it = range.first; it != range.second; ++it)
+      {
+        cout << "   " << it->getName() << "\n";
+      }
     }
   }
   else
