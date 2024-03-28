@@ -160,37 +160,35 @@ void Dictionary::findPalindromes() const
 
 void Dictionary::findRhymingWords(string word) const
 {
-  int count = 0;
-
-  if (word.length() >= 3)
+  if (word.length() < 3)
   {
-    const auto &str_1 = word.substr(word.length() - 3);
-    const auto &range = std::equal_range(getWordlist().begin(), getWordlist().end(),
-                                         str_1,
-                                         [](const Word &a, const std::string &b)
-                                         { return a.getName().substr(a.getName().length() - 3) < b; });
+    cout << "The word should contain 3 or more letters!" << "\n";
+    return;
+  }
 
-    count = std::distance(range.first, range.second);
+  const auto &str_1 = word.substr(word.length() - 3);
+  const auto &end = getWordlist().end();
+  const auto &found = std::lower_bound(getWordlist().begin(), end,
+                                       str_1,
+                                       [](const Word &a, const std::string &b)
+                                       { return a.getName().substr(a.getName().length() - 3) < b; });
 
-    if (count == 0)
-    {
-      cout << "   ......" << "\n\n";
-      cout << "Sorry, no rhyming words to \"" << word << "\"," << "\n";
-    }
-    else
-    {
-      cout << "\n";
-      cout << count << " rhyming words found!" << "\n";
+  size_t count = std::distance(found, end);
 
-      for (auto it = range.first; it != range.second; ++it)
-      {
-        cout << "   " << it->getName() << "\n";
-      }
-    }
+  if (count == 0)
+  {
+    cout << "   ......" << "\n\n";
+    cout << "Sorry, no rhyming words to \"" << word << "\"," << "\n";
   }
   else
   {
-    cout << "The word should contain 3 or more letters!" << "\n";
+    cout << "\n";
+    cout << count << " rhyming words found!" << "\n";
+
+    for (auto it = found; it != end; ++it)
+    {
+      cout << "   " << it->getName() << "\n";
+    }
   }
 }
 
