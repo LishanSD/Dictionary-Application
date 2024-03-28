@@ -141,15 +141,15 @@ const Word *Dictionary::search(const string &term) const
   }
 }
 
-void Dictionary::findPalindromes()
+void Dictionary::findPalindromes() const
 {
   cout << "Palindromes," << "\n";
 
-  for (auto &wordObj : getWordlist())
+  const auto &end = getWordlist().end();
+  for (auto it = getWordlist().begin(); it != end; ++it)
   {
-    string word = wordObj.getName();
-    string reversed_word;
-    reverse_copy(word.begin(), word.end(), back_inserter(reversed_word));
+    const auto &word = it->getName();
+    const auto &reversed_word = std::string(word.rbegin(), word.rend());
 
     // Check whether the word is a palindrome
     if (word == reversed_word)
