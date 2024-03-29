@@ -25,6 +25,20 @@ string format_string(string word)
     return format_word;
 }
 
+int countWords(string str)
+{
+    stringstream stream(str); // Create a stringstream from the input string
+    string word;
+    int wordCount = 0;
+
+    while (stream >> word)
+    {
+        wordCount++;
+    }
+
+    return wordCount;
+}
+
 // Constructor
 Dictionary::Dictionary() {}
 
