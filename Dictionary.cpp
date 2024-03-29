@@ -1,3 +1,12 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <random>
+#include <ctime>
+#include <sstream>
+#include <cctype>
+#include "Dictionary.h"
 #include "Dictionary.h"
 
 using namespace std;
