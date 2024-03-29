@@ -40,6 +40,7 @@ int countWords(string str)
     string word;
     int wordCount = 0;
 
+    // Loop through each word in the stringstream
     while (stream >> word)
     {
         wordCount++;
