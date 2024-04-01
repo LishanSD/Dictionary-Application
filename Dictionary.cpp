@@ -49,6 +49,14 @@ int countWords(string str)
     return wordCount;
 }
 
+int randomNumber(int lower_bound, int upper_bound)
+{
+    mt19937 generator(static_cast<unsigned int>(time(0)));                // Seed the random number generator with the current time
+    uniform_int_distribution<int> distribution(lower_bound, upper_bound); // Define the distribution
+    int randNum = distribution(generator);                                // Generate a random number between lower bound and upper bound
+    return randNum;
+}
+
 // Constructor
 Dictionary::Dictionary() {}
 
