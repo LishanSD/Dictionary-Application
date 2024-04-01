@@ -57,6 +57,18 @@ int randomNumber(int lower_bound, int upper_bound)
     return randNum;
 }
 
+bool checkWord(string word)
+{
+    for (char c : word)
+    {
+        if ((!isalpha(c)) and (c != '-'))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
 // Constructor
 Dictionary::Dictionary() {}
 
