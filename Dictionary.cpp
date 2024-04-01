@@ -63,11 +63,11 @@ bool checkWord(string word)
     {
         if ((!isalpha(c)) and (c != '-'))
         {
-            return false;
+            return false; // Return false if invalid character is found
         }
     }
 
-    return true;
+    return true; // Return true if all the characters are letters a-z and hyphens
 }
 // Constructor
 Dictionary::Dictionary() {}
