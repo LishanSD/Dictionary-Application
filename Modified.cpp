@@ -192,6 +192,81 @@ void Dictionary::findRhymingWords(string word) const
   }
 }
 
+void Dictionary::guessTheWord()
+{
+  int score = 0;
+  int n = 0;
+
+  cout << "------ Welcome to \"Guess the fourth word\"...! ------" << "\n\n";
+  cout << "Current high score: " << getHighScore() << "\n\n";
+
+  while (true)
+  {
+    int randNum = randomNumber(0, getWordlist().size() - 1); // Generate a random number between 0 and the length of the wordlist
+    Word randWord = getWordlist()[randNum];                  // Choose a random word from the dictionary
+
+    if (countWords(randWord.getDefinition()) >= 4)
+    {
+      stringstream stream(randWord.getDefinition()); // Create a stringstream from the definition of the word
+      vector<string> words;
+      string word;
+      string guess;
+
+      // Split the input string into words
+      while (stream >> word)
+      {
+        words.push_back(word);
+      }
+
+      string correct_word = words[3];
+      words[3] = string(words[3].size(), '_'); // Replace the 4th word with underscores
+
+      // Reset the stringstream and concatenate the modified words back into a string
+      stream.str("");
+      stream.clear();
+
+      for (const auto &word : words)
+      {
+        stream << word << " ";
+      }
+
+      string defWithBlank = stream.str().substr(0, stream.str().size() - 1); // Remove the trailing space
+
+      // Implementation of the game
+      cout << "----------------------------------------------------" << "\n";
+      cout << "Guess the missing word of the definition," << "\n\n";
+      cout << "   Word: " << randWord.getName() << "\n";
+      cout << "   Definition: " << defWithBlank << "\n\n";
+      cout << "Your guess: ";
+      getline(cin, guess);
+      cout << "\n";
+
+      if (guess == correct_word)
+      {
+        cout << "Congratulations! your guess is correct!" << "\n\n";
+        score += 10;
+
+        if (score > getHighScore())
+        {
+          n++;
+          setHighScore(score);
+          if (n == 1)
+          {
+            cout << "Congratulations! you have beaten the highest score!" << "\n\n";
+          }
+        }
+      }
+      else
+      {
+        cout << "Your guess is incorrect!" << "\n";
+        cout << "The correct answer is, \"" << correct_word << "\"" << "\n";
+        cout << "Your score: " << score << "\n";
+        break;
+      }
+    }
+  }
+}
+
 // Method to execute the menu
 void Dictionary::menu()
 {
