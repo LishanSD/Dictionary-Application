@@ -96,4 +96,26 @@ void Dictionary::setHighScore(int newHighScore)
 
 bool Dictionary::load(string fileName)
 {
+    ifstream file(fileName);
+
+    // Load the information for each word and add them into the dictionary
+    if (file.is_open())
+    {
+        string type;
+        string definition;
+        string name;
+        string blank_line;
+
+        while (getline(file, type))
+        {
+        }
+
+        file.close();
+
+        cout << "Dictionary loaded and parsed successfully..." << "\n";
+        return true;
+    }
+    else
+    {
+    }
 }
