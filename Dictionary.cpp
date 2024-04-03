@@ -93,3 +93,7 @@ void Dictionary::setHighScore(int newHighScore)
 {
     this->highScore = newHighScore;
 }
+
+bool Dictionary::load(string fileName)
+{
+}
