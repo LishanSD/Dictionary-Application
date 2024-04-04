@@ -108,6 +108,18 @@ bool Dictionary::load(string fileName)
 
         while (getline(file, type))
         {
+            type = type.erase(0, 6);
+
+            getline(file, definition);
+            definition = definition.erase(0, 12);
+
+            getline(file, name);
+            name = name.erase(0, 6);
+
+            getline(file, blank_line);
+
+            Word word(name, type, definition);
+            setWordlist(word);
         }
 
         file.close();
