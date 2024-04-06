@@ -131,5 +131,7 @@ bool Dictionary::load(string fileName)
     }
     else
     {
+        cout << "Error opening the dictionary file!" << "\n";
+        return false;
     }
 }
