@@ -108,17 +108,20 @@ bool Dictionary::load(string fileName)
 
         while (getline(file, type))
         {
-            type = type.erase(0, 6);
+            type = type.erase(0, 6); // Remove the text "Type: " and load
 
             getline(file, definition);
-            definition = definition.erase(0, 12);
+            definition = definition.erase(0, 12); // Remove the text "Definition: " and load
 
             getline(file, name);
-            name = name.erase(0, 6);
+            name = name.erase(0, 6); // Remove the text "Word: " and load
 
             getline(file, blank_line);
 
+            // Add the information of word to a Word object
             Word word(name, type, definition);
+
+            // Add each word into the dictionary
             setWordlist(word);
         }
 
