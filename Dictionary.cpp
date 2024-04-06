@@ -126,8 +126,6 @@ bool Dictionary::load(string fileName)
         }
 
         file.close();
-
-        cout << "Dictionary loaded and parsed successfully..." << "\n";
         return true;
     }
     else
