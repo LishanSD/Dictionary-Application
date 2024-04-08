@@ -138,3 +138,18 @@ bool Dictionary::load(string fileName)
         return false;
     }
 }
+
+void Dictionary::search(string term)
+{
+    string format_term = format_string(term); // Make the input lowercase and replace the spaces in the input with hyphens
+
+    // Searching
+    for (auto &wordObj : getWordlist())
+    {
+        if (wordObj.getName() == format_term)
+        {
+            wordObj.printDefinition();
+            return;
+        }
+    }
+}
