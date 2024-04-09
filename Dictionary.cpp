@@ -146,10 +146,13 @@ void Dictionary::search(string term)
     // Searching
     for (auto &wordObj : getWordlist())
     {
+        // Word found
         if (wordObj.getName() == format_term)
         {
             wordObj.printDefinition();
             return;
         }
     }
+    // Throw an exception if the word not found
+    throw out_of_range("Word not found!");
 }
