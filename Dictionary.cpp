@@ -139,6 +139,7 @@ bool Dictionary::load(string fileName)
     }
 }
 
+// Method to search for a word in the dictionary and output it's information
 void Dictionary::search(string term)
 {
     string format_term = format_string(term); // Make the input lowercase and replace the spaces in the input with hyphens
@@ -153,6 +154,7 @@ void Dictionary::search(string term)
             return;
         }
     }
+
     // Throw an exception if the word not found
     throw out_of_range("Word not found!");
 }
