@@ -158,3 +158,18 @@ void Dictionary::search(string term)
     // Throw an exception if the word not found
     throw out_of_range("Word not found!");
 }
+
+void Dictionary::findPalindromes()
+{
+
+    for (auto &wordObj : getWordlist())
+    {
+        string word = wordObj.getName();
+        string reversed_word;
+        reverse_copy(word.begin(), word.end(), back_inserter(reversed_word));
+        if (word == reversed_word)
+        {
+            cout << "   " << word << "\n";
+        }
+    }
+}
