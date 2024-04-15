@@ -164,6 +164,7 @@ void Dictionary::findPalindromes()
 
     for (auto &wordObj : getWordlist())
     {
+        cout << "Palindromes," << "\n";
         string word = wordObj.getName();
         string reversed_word;
         reverse_copy(word.begin(), word.end(), back_inserter(reversed_word));
