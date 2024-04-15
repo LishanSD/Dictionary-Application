@@ -159,15 +159,18 @@ void Dictionary::search(string term)
     throw out_of_range("Word not found!");
 }
 
+// Method to list down all the palindromes in the dictionary
 void Dictionary::findPalindromes()
 {
+    cout << "Palindromes," << "\n";
 
     for (auto &wordObj : getWordlist())
     {
-        cout << "Palindromes," << "\n";
         string word = wordObj.getName();
         string reversed_word;
         reverse_copy(word.begin(), word.end(), back_inserter(reversed_word));
+
+        // Check whether the word is a palindrome
         if (word == reversed_word)
         {
             cout << "   " << word << "\n";
