@@ -177,3 +177,25 @@ void Dictionary::findPalindromes()
         }
     }
 }
+
+void Dictionary::findRhymingWords(string word)
+{
+    int count = 0;
+
+    if (word.length() >= 3)
+    {
+        string str_1 = word.substr(word.length() - 3);
+        for (auto &wordObj : getWordlist())
+        {
+            string curr_word = wordObj.getName();
+            if (curr_word.length() >= 3)
+            {
+                string str_2 = curr_word.substr(curr_word.length() - 3);
+                if (str_1 == str_2)
+                {
+                    count++;
+                    cout << "   " << curr_word << "\n";
+                }
+            }
+        }
+    }
