@@ -203,4 +203,9 @@ void Dictionary::findRhymingWords(string word)
             cout << "   ......" << "\n\n";
             cout << "Sorry, no rhyming words to \"" << word << "\"," << "\n";
         }
+        else
+        {
+            cout << "\n";
+            cout << count << " rhyming words found!" << "\n";
+        }
     }
