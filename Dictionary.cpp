@@ -198,4 +198,9 @@ void Dictionary::findRhymingWords(string word)
                 }
             }
         }
+        if (count == 0)
+        {
+            cout << "   ......" << "\n\n";
+            cout << "Sorry, no rhyming words to \"" << word << "\"," << "\n";
+        }
     }
