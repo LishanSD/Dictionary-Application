@@ -178,6 +178,7 @@ void Dictionary::findPalindromes()
     }
 }
 
+// Method to list down all the rhyming words to a given word
 void Dictionary::findRhymingWords(string word)
 {
     int count = 0;
@@ -185,12 +186,16 @@ void Dictionary::findRhymingWords(string word)
     if (word.length() >= 3)
     {
         string str_1 = word.substr(word.length() - 3); // Separate the last 3 letters of the given word
+        cout << "Rhyming words to \"" << word << "\"," << "\n";
+
         for (auto &wordObj : getWordlist())
         {
             string curr_word = wordObj.getName();
+
             if (curr_word.length() >= 3)
             {
                 string str_2 = curr_word.substr(curr_word.length() - 3); // Separate the last 3 letters of the current word
+
                 // Check whether the word rhymes with the given word
                 if (str_1 == str_2)
                 {
@@ -199,6 +204,7 @@ void Dictionary::findRhymingWords(string word)
                 }
             }
         }
+
         if (count == 0)
         {
             cout << "   ......" << "\n\n";
