@@ -184,7 +184,7 @@ void Dictionary::findRhymingWords(string word)
 
     if (word.length() >= 3)
     {
-        string str_1 = word.substr(word.length() - 3);
+        string str_1 = word.substr(word.length() - 3); // Separate the last 3 letters of the given word
         for (auto &wordObj : getWordlist())
         {
             string curr_word = wordObj.getName();
