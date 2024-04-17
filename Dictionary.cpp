@@ -190,7 +190,8 @@ void Dictionary::findRhymingWords(string word)
             string curr_word = wordObj.getName();
             if (curr_word.length() >= 3)
             {
-                string str_2 = curr_word.substr(curr_word.length() - 3);
+                string str_2 = curr_word.substr(curr_word.length() - 3); // Separate the last 3 letters of the current word
+                // Check whether the word rhymes with the given word
                 if (str_1 == str_2)
                 {
                     count++;
