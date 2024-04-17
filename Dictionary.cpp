@@ -209,3 +209,8 @@ void Dictionary::findRhymingWords(string word)
             cout << count << " rhyming words found!" << "\n";
         }
     }
+    else
+    {
+        cout << "The word should contain 3 or more letters!" << "\n";
+    }
+}
