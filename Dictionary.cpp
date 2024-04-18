@@ -245,6 +245,12 @@ void Dictionary::guessTheWord()
 
             string correct_word = words[3];
             words[3] = string(words[3].size(), '_');
+            string correct_word = words[3];
+            words[3] = string(words[3].size(), '_'); // Replace the 4th word with underscores
+
+            // Reset the stringstream and concatenate the modified words back into a string
+            stream.str("");
+            stream.clear();
         }
     }
 }
