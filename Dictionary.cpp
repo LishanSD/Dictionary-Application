@@ -221,3 +221,30 @@ void Dictionary::findRhymingWords(string word)
         cout << "The word should contain 3 or more letters!" << "\n";
     }
 }
+
+void Dictionary::guessTheWord()
+{
+    int score = 0;
+    int n = 0;
+
+    while (true)
+    {
+        int randNum = randomNumber(0, getWordlist().size() - 1);
+
+        if (countWords(randWord.getDefinition()) >= 4)
+        {
+            stringstream stream(randWord.getDefinition());
+            vector<string> words;
+            string word;
+            string guess;
+
+            while (stream >> word)
+            {
+                words.push_back(word);
+            }
+
+            string correct_word = words[3];
+            words[3] = string(words[3].size(), '_');
+        }
+    }
+}
