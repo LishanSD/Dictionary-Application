@@ -258,6 +258,15 @@ void Dictionary::guessTheWord()
             }
 
             string defWithBlank = stream.str().substr(0, stream.str().size() - 1); // Remove the trailing space
+
+            // Implementation of the game
+            cout << "----------------------------------------------------" << "\n";
+            cout << "Guess the missing word of the definition," << "\n\n";
+            cout << "   Word: " << randWord.getName() << "\n";
+            cout << "   Definition: " << defWithBlank << "\n\n";
+            cout << "Your guess: ";
+            getline(cin, guess);
+            cout << "\n";
         }
     }
 }
