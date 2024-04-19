@@ -251,6 +251,13 @@ void Dictionary::guessTheWord()
             // Reset the stringstream and concatenate the modified words back into a string
             stream.str("");
             stream.clear();
+
+            for (const auto &word : words)
+            {
+                stream << word << " ";
+            }
+
+            string defWithBlank = stream.str().substr(0, stream.str().size() - 1); // Remove the trailing space
         }
     }
 }
