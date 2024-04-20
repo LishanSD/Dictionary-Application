@@ -283,6 +283,13 @@ void Dictionary::guessTheWord()
                     }
                 }
             }
+            else
+            {
+                cout << "Your guess is incorrect!" << "\n";
+                cout << "The correct answer is, \"" << correct_word << "\"" << "\n";
+                cout << "Your score: " << score << "\n";
+                break;
+            }
         }
     }
 }
