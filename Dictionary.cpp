@@ -227,6 +227,9 @@ void Dictionary::guessTheWord()
     int score = 0;
     int n = 0;
 
+    cout << "------ Welcome to \"Guess the fourth word\"...! ------" << "\n\n";
+    cout << "Current high score: " << getHighScore() << "\n\n";
+
     while (true)
     {
         int randNum = randomNumber(0, getWordlist().size() - 1);
