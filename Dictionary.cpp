@@ -267,6 +267,22 @@ void Dictionary::guessTheWord()
             cout << "Your guess: ";
             getline(cin, guess);
             cout << "\n";
+
+            if (guess == correct_word)
+            {
+                cout << "Congratulations! your guess is correct!" << "\n\n";
+                score += 10;
+
+                if (score > getHighScore())
+                {
+                    n++;
+                    setHighScore(score);
+                    if (n == 1)
+                    {
+                        cout << "Congratulations! you have beaten the highest score!" << "\n\n";
+                    }
+                }
+            }
         }
     }
 }
