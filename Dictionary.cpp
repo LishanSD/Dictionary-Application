@@ -222,6 +222,7 @@ void Dictionary::findRhymingWords(string word)
     }
 }
 
+// Method for the game "Guess the fourth word"
 void Dictionary::guessTheWord()
 {
     int score = 0;
@@ -232,22 +233,22 @@ void Dictionary::guessTheWord()
 
     while (true)
     {
-        int randNum = randomNumber(0, getWordlist().size() - 1);
+        int randNum = randomNumber(0, getWordlist().size() - 1); // Generate a random number between 0 and the length of the wordlist
+        Word randWord = getWordlist()[randNum];                  // Choose a random word from the dictionary
 
         if (countWords(randWord.getDefinition()) >= 4)
         {
-            stringstream stream(randWord.getDefinition());
+            stringstream stream(randWord.getDefinition()); // Create a stringstream from the definition of the word
             vector<string> words;
             string word;
             string guess;
 
+            // Split the input string into words
             while (stream >> word)
             {
                 words.push_back(word);
             }
 
-            string correct_word = words[3];
-            words[3] = string(words[3].size(), '_');
             string correct_word = words[3];
             words[3] = string(words[3].size(), '_'); // Replace the 4th word with underscores
 
