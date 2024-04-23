@@ -367,4 +367,8 @@ void Dictionary::addWord()
     cout << "Enter a name for the file to store the updated dictionary (with the extension \".txt\"): ";
     getline(cin, fileName);
     cout << "\n";
+
+    Word newWord(name, type, definition);
+    setWordlist(newWord);
+    ofstream outputFile(fileName);
 }
