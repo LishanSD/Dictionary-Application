@@ -321,4 +321,42 @@ void Dictionary::addWord()
     cout << "Enter the type: ";
     getline(cin, type);
     cout << "\n";
+
+    if (type == "v" or type == "verb")
+    {
+        type = "v";
+    }
+    else if (type == "n" or type == "noun")
+    {
+        type = "n";
+    }
+    else if (type == "adv" or type == "adverb")
+    {
+        type = "adv";
+    }
+    else if (type == "adj" or type == "adjective")
+    {
+        type = "adj";
+    }
+    else if (type == "prep" or type == "preposition")
+    {
+        type = "prep";
+    }
+    else if (type == "pn" or type == "proper noun")
+    {
+        type = "pn";
+    }
+    else if (type == "n_and_v" or type == "noun and a verb")
+    {
+        type = "n_and_v";
+    }
+    else if (type == "misc" or type == "other words")
+    {
+        type = "misc";
+    }
+    else
+    {
+        cout << "Invalid type!" << "\n";
+        return;
+    }
 }
