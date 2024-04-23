@@ -359,4 +359,12 @@ void Dictionary::addWord()
         cout << "Invalid type!" << "\n";
         return;
     }
+
+    cout << "Enter the definition: ";
+    getline(cin, definition);
+    cout << "\n";
+
+    cout << "Enter a name for the file to store the updated dictionary (with the extension \".txt\"): ";
+    getline(cin, fileName);
+    cout << "\n";
 }
