@@ -297,3 +297,28 @@ void Dictionary::guessTheWord()
         }
     }
 }
+
+// Method to add a new word to the dictionary
+void Dictionary::addWord()
+{
+    string name, type, definition, fileName;
+
+    // Input name
+    cout << "Enter the word: ";
+    getline(cin, name);
+    cout << "\n";
+
+    name = format_string(name); // Make the name lowercase and replace the spaces in the name with hyphens
+
+    // Check whether the name only contains a-z characters and the hyphen
+    if (checkWord(name) == false)
+    {
+        cout << "Invalid word!" << "\n";
+        return;
+    }
+
+    // Input type
+    cout << "Enter the type: ";
+    getline(cin, type);
+    cout << "\n";
+}
