@@ -371,4 +371,19 @@ void Dictionary::addWord()
     Word newWord(name, type, definition);
     setWordlist(newWord);
     ofstream outputFile(fileName);
+
+    if (outputFile.is_open())
+    {
+        // Write data to the file
+        for (auto &wordObj : getWordlist())
+        {
+            outputFile << "Type: " << wordObj.getType() << "\n";
+            outputFile << "Definition: " << wordObj.getDefinition() << "\n";
+            outputFile << "Word: " << wordObj.getName() << "\n";
+            outputFile << "\n";
+        }
+
+        outputFile.close();
+        cout << "File \"" << fileName << "\" has been created and saved the updated dictionary successfully...\n";
+    }
 }
