@@ -244,14 +244,15 @@ void Dictionary::guessTheWord()
     cout << "------ Welcome to \"Guess the fourth word\"...! ------" << "\n\n";
     cout << "Current high score: " << getHighScore() << "\n\n";
 
-    while (true)
+    auto it = getWordlist().begin();
+    while (it != getWordlist().end())
     {
-        int randNum = dis(gen);                 // Generate a random number between 0 and the length of the wordlist
-        Word randWord = getWordlist()[randNum]; // Choose a random word from the dictionary
+        int randNum = dis(gen);
+        std::advance(it, randNum); // Move the iterator to the random position
 
-        if (countWords(randWord.getDefinition()) >= 4)
+        if (countWords(it->getDefinition()) >= 4)
         {
-            std::istringstream iss(randWord.getDefinition());
+            std::istringstream iss(it->getDefinition());
             std::vector<std::string> words;
             std::string word;
             std::string guess;
@@ -277,7 +278,7 @@ void Dictionary::guessTheWord()
             // Implementation of the game
             cout << "----------------------------------------------------" << "\n";
             cout << "Guess the missing word of the definition," << "\n\n";
-            cout << "   Word: " << randWord.getName() << "\n";
+            cout << "   Word: " << it->getName() << "\n";
             cout << "   Definition: " << defWithBlank << "\n\n";
             cout << "Your guess: ";
             getline(cin, guess);
@@ -306,6 +307,7 @@ void Dictionary::guessTheWord()
                 break;
             }
         }
+        ++it;
     }
 }
 
