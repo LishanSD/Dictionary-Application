@@ -237,48 +237,46 @@ void Dictionary::guessTheWord()
 {
     int score = 0;
     int n = 0;
-    std::random_device rd;
-    std::mt19937 gen(rd();
-    std::uniform_int_distribution<int> dis(0, getWordlist().size() - 1);
 
     cout << "------ Welcome to \"Guess the fourth word\"...! ------" << "\n\n";
     cout << "Current high score: " << getHighScore() << "\n\n";
 
-    auto it = getWordlist().begin();
-    while (it != getWordlist().end())
+    while (true)
     {
-        int randNum = dis(gen);
-        std::advance(it, randNum); // Move the iterator to the random position
+        int randNum = randomNumber(0, getWordlist().size() - 1); // Generate a random number between 0 and the length of the wordlist
+        Word randWord = getWordlist()[randNum];                  // Choose a random word from the dictionary
 
-        if (countWords(it->getDefinition()) >= 4)
+        if (countWords(randWord.getDefinition()) >= 4)
         {
-            std::istringstream iss(it->getDefinition());
-            std::vector<std::string> words;
-            std::string word;
-            std::string guess;
+            stringstream stream(randWord.getDefinition()); // Create a stringstream from the definition of the word
+            vector<string> words;
+            string word;
+            string guess;
 
             // Split the input string into words
-            while (iss >> word)
+            while (stream >> word)
             {
                 words.push_back(word);
             }
 
-            std::string correct_word = words[3];
-            words[3] = std::string(words[3].size(), '_'); // Replace the 4th word with underscores
+            string correct_word = words[3];
+            words[3] = string(words[3].size(), '_'); // Replace the 4th word with underscores
 
             // Reset the stringstream and concatenate the modified words back into a string
-            std::ostringstream oss;
+            stream.str("");
+            stream.clear();
+
             for (const auto &word : words)
             {
-                oss << word << " ";
+                stream << word << " ";
             }
 
-            std::string defWithBlank = oss.str().substr(0, oss.str().size() - 1); // Remove the trailing space
+            string defWithBlank = stream.str().substr(0, stream.str().size() - 1); // Remove the trailing space
 
             // Implementation of the game
             cout << "----------------------------------------------------" << "\n";
             cout << "Guess the missing word of the definition," << "\n\n";
-            cout << "   Word: " << it->getName() << "\n";
+            cout << "   Word: " << randWord.getName() << "\n";
             cout << "   Definition: " << defWithBlank << "\n\n";
             cout << "Your guess: ";
             getline(cin, guess);
@@ -307,7 +305,6 @@ void Dictionary::guessTheWord()
                 break;
             }
         }
-        ++it;
     }
 }
 
