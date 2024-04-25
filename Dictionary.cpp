@@ -237,41 +237,42 @@ void Dictionary::guessTheWord()
 {
     int score = 0;
     int n = 0;
+    std::random_device rd;
+    std::mt19937 gen(rd();
+    std::uniform_int_distribution<int> dis(0, getWordlist().size() - 1);
 
     cout << "------ Welcome to \"Guess the fourth word\"...! ------" << "\n\n";
     cout << "Current high score: " << getHighScore() << "\n\n";
 
     while (true)
     {
-        int randNum = randomNumber(0, getWordlist().size() - 1); // Generate a random number between 0 and the length of the wordlist
-        Word randWord = getWordlist()[randNum];                  // Choose a random word from the dictionary
+        int randNum = dis(gen);                 // Generate a random number between 0 and the length of the wordlist
+        Word randWord = getWordlist()[randNum]; // Choose a random word from the dictionary
 
         if (countWords(randWord.getDefinition()) >= 4)
         {
-            stringstream stream(randWord.getDefinition()); // Create a stringstream from the definition of the word
-            vector<string> words;
-            string word;
-            string guess;
+            std::istringstream iss(randWord.getDefinition());
+            std::vector<std::string> words;
+            std::string word;
+            std::string guess;
 
             // Split the input string into words
-            while (stream >> word)
+            while (iss >> word)
             {
                 words.push_back(word);
             }
 
-            string correct_word = words[3];
-            words[3] = string(words[3].size(), '_'); // Replace the 4th word with underscores
+            std::string correct_word = words[3];
+            words[3] = std::string(words[3].size(), '_'); // Replace the 4th word with underscores
 
             // Reset the stringstream and concatenate the modified words back into a string
-            stream.str("");
-            stream.clear();
-
+            std::ostringstream oss;
             for (const auto &word : words)
             {
-                stream << word << " ";
+                oss << word << " ";
             }
 
-            string defWithBlank = stream.str().substr(0, stream.str().size() - 1); // Remove the trailing space
+            std::string defWithBlank = oss.str().substr(0, oss.str().size() - 1); // Remove the trailing space
 
             // Implementation of the game
             cout << "----------------------------------------------------" << "\n";
