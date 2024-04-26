@@ -386,4 +386,9 @@ void Dictionary::addWord()
         outputFile.close();
         cout << "File \"" << fileName << "\" has been created and saved the updated dictionary successfully...\n";
     }
+
+    else
+    {
+        cout << "Error opening the file \"" << fileName << "\" for writing!\n";
+    }
 }
