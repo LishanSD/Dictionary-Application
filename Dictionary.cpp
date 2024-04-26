@@ -317,11 +317,23 @@ void Dictionary::addWord()
         return;
     }
 
+    // Check whether the word already exists in the dictionary
+    for (auto &wordObj : getWordlist())
+    {
+        // Word exists
+        if (wordObj.getName() == name)
+        {
+            cout << "error: word exists, elevated privileges required to edit existing words" << "\n";
+            return;
+        }
+    }
+
     // Input type
     cout << "Enter the type: ";
     getline(cin, type);
     cout << "\n";
 
+    // Check whether the type is valid
     if (type == "v" or type == "verb")
     {
         type = "v";
@@ -360,18 +372,26 @@ void Dictionary::addWord()
         return;
     }
 
+    // Input definition
     cout << "Enter the definition: ";
     getline(cin, definition);
     cout << "\n";
 
+    // Input file name
     cout << "Enter a name for the file to store the updated dictionary (with the extension \".txt\"): ";
     getline(cin, fileName);
     cout << "\n";
 
+    // Create a new Word instance
     Word newWord(name, type, definition);
-    setWordlist(newWord);
-    ofstream outputFile(fileName);
 
+    // Add the new word into the dictionary
+    setWordlist(newWord);
+
+    // Save the updated dictionary to a new file
+    ofstream outputFile(fileName); // Create an ofstream object and open the file
+
+    // Check whether the file is opened successfully
     if (outputFile.is_open())
     {
         // Write data to the file
@@ -386,7 +406,6 @@ void Dictionary::addWord()
         outputFile.close();
         cout << "File \"" << fileName << "\" has been created and saved the updated dictionary successfully...\n";
     }
-
     else
     {
         cout << "Error opening the file \"" << fileName << "\" for writing!\n";
