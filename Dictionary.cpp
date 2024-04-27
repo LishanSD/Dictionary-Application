@@ -411,3 +411,23 @@ void Dictionary::addWord()
         cout << "Error opening the file \"" << fileName << "\" for writing!\n";
     }
 }
+
+// Method to execute the menu
+void Dictionary::menu()
+{
+    while (true)
+    {
+        string n;
+        string word;
+
+        cout << "   Enter '1' to search a word" << "\n";
+        cout << "   Enter '2' to list all the palindromes in the dictionary" << "\n";
+        cout << "   Enter '3' to find rhyming words to a word" << "\n";
+        cout << "   Enter '4' to play the game \"Guess the fourth word\"" << "\n";
+        cout << "   Enter '5' to add a new word to the dictionary" << "\n";
+        cout << "   Enter '6' to exit" << "\n\n";
+
+        cout << "Enter a number to continue: ";
+        cin >> n;
+    }
+}
