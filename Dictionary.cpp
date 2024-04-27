@@ -429,5 +429,7 @@ void Dictionary::menu()
 
         cout << "Enter a number to continue: ";
         cin >> n;
+        cin.ignore();
+        cout << "\n";
     }
 }
