@@ -200,44 +200,26 @@ void Dictionary::guessTheWord()
   cout << "------ Welcome to \"Guess the fourth word\"...! ------" << "\n\n";
   cout << "Current high score: " << getHighScore() << "\n\n";
 
-  while (true)
+  auto end = getWordlist().end();
+  for (auto it = getWordlist().begin(); it != end; ++it)
   {
-    int randNum = randomNumber(0, getWordlist().size() - 1); // Generate a random number between 0 and the length of the wordlist
-    Word randWord = getWordlist()[randNum];                  // Choose a random word from the dictionary
-
-    if (countWords(randWord.getDefinition()) >= 4)
+    if (countWords(it->getDefinition()) >= 4)
     {
-      stringstream stream(randWord.getDefinition()); // Create a stringstream from the definition of the word
-      vector<string> words;
-      string word;
-      string guess;
-
-      // Split the input string into words
-      while (stream >> word)
-      {
-        words.push_back(word);
-      }
+      stringstream stream(it->getDefinition());
+      vector<string> words(istream_iterator<string>(stream), {});
 
       string correct_word = words[3];
-      words[3] = string(words[3].size(), '_'); // Replace the 4th word with underscores
+      words[3] = string(words[3].size(), '_');
 
-      // Reset the stringstream and concatenate the modified words back into a string
-      stream.str("");
-      stream.clear();
+      string defWithBlank;
+      copy(words.begin(), words.end(), ostream_iterator<string>(defWithBlank, " "));
 
-      for (const auto &word : words)
-      {
-        stream << word << " ";
-      }
-
-      string defWithBlank = stream.str().substr(0, stream.str().size() - 1); // Remove the trailing space
-
-      // Implementation of the game
       cout << "----------------------------------------------------" << "\n";
       cout << "Guess the missing word of the definition," << "\n\n";
-      cout << "   Word: " << randWord.getName() << "\n";
+      cout << "   Word: " << it->getName() << "\n";
       cout << "   Definition: " << defWithBlank << "\n\n";
       cout << "Your guess: ";
+      string guess;
       getline(cin, guess);
       cout << "\n";
 
