@@ -447,5 +447,32 @@ void Dictionary::menu()
                 cerr << exception.what() << "\n"; // Handle the exception
             }
         }
+        else if (n == "2")
+        { // List down palindromes if '2' is entered
+            findPalindromes();
+        }
+        else if (n == "3")
+        { // Find rhyming words if '3' is entered
+            cout << "Enter a word to find rhyming words: ";
+            getline(cin, word);
+            cout << "\n";
+            findRhymingWords(word); // Find rhyming words to the entered word
+        }
+        else if (n == "4")
+        { // Execute the game "Guess the fourth word" if '4' is entered
+            guessTheWord();
+        }
+        else if (n == "5")
+        { // Add a word to the dictionary if '5' is entered
+            addWord();
+        }
+        else if (n == "6")
+        { // Exit the loop if '6' is entered
+            break;
+        }
+        else
+        { // Output "Invalid number!" if anything else is inputted
+            cout << "Invalid number!" << "\n";
+        }
     }
 }
