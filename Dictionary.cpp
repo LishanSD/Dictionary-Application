@@ -431,5 +431,21 @@ void Dictionary::menu()
         cin >> n;
         cin.ignore();
         cout << "\n";
+
+        if (n == "1")
+        { // Search for a word if '1' is entered
+            cout << "Enter a word to search: ";
+            getline(cin, word);
+            cout << "\n";
+
+            try
+            {
+                search(word); // Search for the entered word in the dictionary
+            }
+            catch (const std::out_of_range &exception)
+            {
+                cerr << exception.what() << "\n"; // Handle the exception
+            }
+        }
     }
 }
