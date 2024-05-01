@@ -1,3 +1,5 @@
+// "Dictionary.cpp" file
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -7,10 +9,12 @@
 #include <sstream>
 #include <cctype>
 #include "Dictionary.h"
-#include "Dictionary.h"
 
 using namespace std;
 
+// Implementation of other supportive functions which do not belong to a class
+
+// Function to make all the characters of a word lowercase and replace all the spaces in the word by hyphens
 string format_string(string word)
 {
     string format_word;
@@ -34,6 +38,7 @@ string format_string(string word)
     return format_word;
 }
 
+// Function to count the number of words in a string
 int countWords(string str)
 {
     stringstream stream(str); // Create a stringstream from the input string
@@ -49,6 +54,7 @@ int countWords(string str)
     return wordCount;
 }
 
+// Function to generate a random number
 int randomNumber(int lower_bound, int upper_bound)
 {
     mt19937 generator(static_cast<unsigned int>(time(0)));                // Seed the random number generator with the current time
@@ -57,6 +63,7 @@ int randomNumber(int lower_bound, int upper_bound)
     return randNum;
 }
 
+// Function to check whether there are only a-z characters and the hyphen in a string
 bool checkWord(string word)
 {
     for (char c : word)
@@ -69,6 +76,9 @@ bool checkWord(string word)
 
     return true; // Return true if all the characters are letters a-z and hyphens
 }
+
+// Implementation of constructor and methods of "Dictionary" class
+
 // Constructor
 Dictionary::Dictionary() {}
 
