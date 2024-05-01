@@ -420,6 +420,9 @@ void Dictionary::menu()
         string n;
         string word;
 
+        // Menu
+        cout << "------------------------------------------------------------------------------------------------" << "\n";
+        cout << "Dictionary..." << "\n";
         cout << "   Enter '1' to search a word" << "\n";
         cout << "   Enter '2' to list all the palindromes in the dictionary" << "\n";
         cout << "   Enter '3' to find rhyming words to a word" << "\n";
@@ -432,6 +435,7 @@ void Dictionary::menu()
         cin.ignore();
         cout << "\n";
 
+        // Execution of tasks
         if (n == "1")
         { // Search for a word if '1' is entered
             cout << "Enter a word to search: ";
@@ -474,5 +478,7 @@ void Dictionary::menu()
         { // Output "Invalid number!" if anything else is inputted
             cout << "Invalid number!" << "\n";
         }
+
+        cout << "\n";
     }
 }
