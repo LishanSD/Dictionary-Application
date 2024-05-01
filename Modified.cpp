@@ -203,21 +203,19 @@ void Dictionary::guessTheWord()
   auto end = getWordlist().end();
   for (auto it = getWordlist().begin(); it != end; ++it)
   {
-    if (countWords(it->getDefinition()) >= 4)
+    const auto &words = split_string(it->getDefinition());
+    if (words.size() >= 4)
     {
-      stringstream stream(it->getDefinition());
-      vector<string> words(istream_iterator<string>(stream), {});
-
-      string correct_word = words[3];
+      const auto &correct_word = words[3];
       words[3] = string(words[3].size(), '_');
 
-      string defWithBlank;
+      ostringstream defWithBlank;
       copy(words.begin(), words.end(), ostream_iterator<string>(defWithBlank, " "));
 
       cout << "----------------------------------------------------" << "\n";
       cout << "Guess the missing word of the definition," << "\n\n";
       cout << "   Word: " << it->getName() << "\n";
-      cout << "   Definition: " << defWithBlank << "\n\n";
+      cout << "   Definition: " << defWithBlank.str() << "\n\n";
       cout << "Your guess: ";
       string guess;
       getline(cin, guess);
