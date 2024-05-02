@@ -25,6 +25,19 @@ public:
     // Setters
     void setWordlist(Word word);
     void setHighScore(int newHighScore);
+
+    // Other methods
+    bool load(std::string fileName);
+    void search(std::string term);
+    void menu();
+
+    // Basic tasks
+    void findPalindromes();
+    void findRhymingWords(std::string word);
+
+    // Intermediate tasks
+    void guessTheWord();
+    void addWord();
 };
 
 #endif
