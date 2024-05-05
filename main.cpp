@@ -32,12 +32,20 @@ int main()
             cout << "Opening the file \"dictionary_2024S0.txt\"..." << "\n\n";
             break;
         }
+        else
+        {
+            cout << "Please enter only \'y\' or \'n\'!" << "\n\n";
+        }
     }
 
+    // Execute the dictionary
     Dictionary dictionary;
     bool loaded = dictionary.load(fileName);
 
-    dictionary.menu();
+    if (loaded == true)
+    {
+        dictionary.menu();
+    }
 
     return 0;
 }
