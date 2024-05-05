@@ -84,6 +84,7 @@ void Word::printDefinition()
     {
         cout << "other words" << "\n";
     }
+
     // Print definition
     cout << "Definition: " << getDefinition() << '\n';
 }
