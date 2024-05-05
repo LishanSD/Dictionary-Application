@@ -23,6 +23,14 @@ public:
     std::string getName();
     std::string getType();
     std::string getDefinition();
+
+    // Setters
+    void setName(std::string newName);
+    void setType(std::string newType);
+    void setDefinition(std::string newDefinition);
+
+    // Method to print the word's name, type and definition
+    void printDefinition();
 };
 
 #endif
