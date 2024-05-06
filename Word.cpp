@@ -1,5 +1,4 @@
 // "Word.cpp" file
-// Implemented the "Word" class in this file for better modularity
 
 #include <iostream>
 #include <string>

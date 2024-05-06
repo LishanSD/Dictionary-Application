@@ -1,5 +1,4 @@
 // "Word.h" header file
-// Implemented the "Word" class in a seperate file, "Word.cpp" for better modularity
 
 #ifndef WORD_H
 #define WORD_H
