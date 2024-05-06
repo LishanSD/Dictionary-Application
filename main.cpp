@@ -14,7 +14,7 @@ int main()
     // Confirm the file name
     while (true)
     {
-        cout << "Welcome! do you want to open a file other than \"dictionary_2024S0.txt\"? (y/n): ";
+        cout << "Welcome! do you want to open a file other than \"dictionary_file.txt\"? (y/n): ";
         getline(cin, preference);
         cout << "\n";
 
@@ -28,8 +28,8 @@ int main()
         }
         else if (preference == "n")
         {
-            fileName = "dictionary_2024S0.txt"; // Specify the file path if it's not in the same directory
-            cout << "Opening the file \"dictionary_2024S0.txt\"..." << "\n\n";
+            fileName = "dictionary_file.txt"; // Specify the file path if it's not in the same directory
+            cout << "Opening the file \"dictionary_file.txt\"..." << "\n\n";
             break;
         }
         else
